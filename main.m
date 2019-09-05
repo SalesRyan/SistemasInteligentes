@@ -10,6 +10,8 @@
 data = load('exdata.txt');
 %característica/entrada/feature
 X = data(:, 1); 
+D = data(:, 1);
+
 %saida/alvo/target
 y = data(:, 2);
 
@@ -29,6 +31,17 @@ function J = computeCost(X, y, theta)
   %função custo
   J = sum((h - y).^2)/(2*m);  
  
+endfunction
+
+%% ===== Defini��o da formula de normaliza��o dos dados ===
+
+function F = normalizacao(x)
+ 
+   minX = min(x)
+   maxX = max(x)
+   
+   r = (x - minX)/(maxX - minX )
+   
 endfunction
 
 %% ===== Definição do Gradiente Descendente p/  Regressão Linear ===
@@ -78,5 +91,7 @@ fprintf('Para uma população de 70.000 mil habitantes, o lucro predito foi %f\n
     predict*10000);
 
 
+%%Testando...
 
+normalizacao(D)
 
