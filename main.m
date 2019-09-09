@@ -10,7 +10,7 @@
 data = load('exdata.txt');
 %caracterÃ­stica/entrada/feature
 X = data(:, 1); 
-normal = (7.0 - min(X))/(max(X)-min(X))
+normal = (10.0 - min(X))/(max(X)-min(X))
 
 %saida/alvo/target
 y = data(:, 2);
@@ -80,9 +80,14 @@ fprintf('O custo inicial Ã© %f\n', J0);
 %% ================ Parte III: Treinando o gradiente descendente ====================
 
 [theta,J_history] = gradientDescent(X, y, theta, alpha, iterations);
-plot(J_history)
-predict = X * theta
-plot(X(:, 2), predict, X(:, 2), y, 'o')
+plot(J_history);
+xlabel('Tamanho da população (dados normalizados)')
+ylabel('Lucro')
+title('Gráfico de Iterações em Função do Custo para Alpha = 0.01')
+
+predict1 = X * theta;
+
+%plot(X(:, 2), predict1, X(:, 2), y, 'o')
 
 % Exibe os valores dos parÃ¢metros theta1 e theta2 
 fprintf('ParÃ¢metros Ã³timos do modelo: ');
@@ -95,7 +100,7 @@ fprintf('%f %f \n', theta(1), theta(2));
 
 %predict = [1 normal] *theta;
 %fprintf('Para uma populaÃ§Ã£o de 70.000 mil habitantes, o lucro predito foi %f\n',...
-    %predict*10000');
+%    predict*10000');
 
 
 %%Testando...
