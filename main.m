@@ -5,7 +5,7 @@
 % cada franquia e o tamanho da população da cidade na qual ela se 
 % encontra. 
 
-%% ================ Parte I: Carregando os dados ====================
+%% ================ Parte I: Carrhttps://github.com/SalesRyan/Gradiente-Descendente.gitegando os dados ====================
 
 data = load('exdata.txt');
 %característica/entrada/feature
@@ -33,7 +33,7 @@ function J = computeCost(X, y, theta)
  
 endfunction
 
-%% ===== Defini��o da formula de normaliza��o dos dados ===
+%% ===== Definição da formula de normalização dos dados ===
 
 function F = normalizacao(X)
  
@@ -80,14 +80,20 @@ fprintf('O custo inicial é %f\n', J0);
 %% ================ Parte III: Treinando o gradiente descendente ====================
 
 [theta,J_history] = gradientDescent(X, y, theta, alpha, iterations);
-plot(J_history);
-xlabel('Tamanho da popula��o (dados normalizados)')
-ylabel('Lucro')
-title('Gr�fico de Itera��es em Fun��o do Custo para Alpha = 0.01')
 
+% Plot 1:
 predict1 = X * theta;
+plot(X(:, 2), predict1, X(:, 2), y, 'o');
+legend({'Modelo', 'Dados'});
+xlabel('Tamanho da população (dados normalizados)');
+ylabel('Lucro');
+title('Gráfico do modelo com base nos dados de treinamento');
 
-%plot(X(:, 2), predict1, X(:, 2), y, 'o')
+% Plot 2:
+%plot(J_history);
+%xlabel('Número de Iterações')
+%ylabel('Taxa de Erro')
+%title('Gráfico de Iterações em Função do Custo para Alpha = 0.3')
 
 % Exibe os valores dos parâmetros theta1 e theta2 
 fprintf('Parâmetros ótimos do modelo: ');
@@ -98,9 +104,9 @@ fprintf('%f %f \n', theta(1), theta(2));
 %Predizo lucro da franquia, dado um tamanho da população
 
 
-%predict = [1 normal] *theta;
-%fprintf('Para uma população de 70.000 mil habitantes, o lucro predito foi %f\n',...
-%    predict*10000');
+predict = [1 normal] *theta;
+fprintf('Para uma população de 70.000 mil habitantes, o lucro predito foi %f\n',...
+    predict*10000');
 
 
 %%Testando...
