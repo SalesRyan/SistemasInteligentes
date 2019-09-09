@@ -126,4 +126,3 @@ fprintf('Para uma população de 70.000 mil habitantes, o lucro predito foi %f\n
 
 
 %%Testando...
-
