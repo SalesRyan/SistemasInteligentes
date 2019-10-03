@@ -14,16 +14,13 @@ C = 1;
 % @linearKernel -> função kernel
 % 1e-3 -> determina o limite de casas para comparar 2 números flutuantes
 % 10 -> número de iterações
-model1 = svmTrain(X, y, 1, @linearKernel, 1e-3, 10);
-model2 = svmTrain(X, y, 10, @linearKernel, 1e-3, 10);
-model3 = svmTrain(X, y, 100, @linearKernel, 1e-3, 10);
-model4 = svmTrain(X, y, 1000, @linearKernel, 1e-3, 10);
 
-models = [model1, model2, model3, model4];
+c_values = [1, 10, 100, 1000];
 
 for i = 1:4
-  w = models(i).w;
-  b = models(i).b;
+  model = svmTrain(X, y, c_values(i), @linearKernel, 1e-3, 10);
+  w = model.w;
+  b = model.b;
   xp = linspace(min(X(:,1)), max(X(:,1)), 100);
   yp = - (w(1)*xp + b)/w(2);
   hold on;
@@ -64,25 +61,19 @@ load('ex6data2.mat');
 % SVM Parameters
 C = 1; sigma = 0.1;
 
-%model= svmTrain(X, y, C, @(x1, x2) gaussianKernel(x1, x2, sigma));
-kernel1 = svmTrain(X, y, C, @(x1, x2) gaussianKernel(x1, x2, 0.01));
-kernel2 = svmTrain(X, y, C, @(x1, x2) gaussianKernel(x1, x2, 0.03));
-kernel3 = svmTrain(X, y, C, @(x1, x2) gaussianKernel(x1, x2, 0.1));
-kernel4 = svmTrain(X, y, C, @(x1, x2) gaussianKernel(x1, x2, 0.3));
-kernel5 = svmTrain(X, y, C, @(x1, x2) gaussianKernel(x1, x2, 1));
-
-kernels = [kernel1, kernel2, kernel3, kernel4, kernel5];
-colors = ['b', 'g', 'r', 'y', 'k'];
+sigma_values = [0.01, 0.03, 0.1, 0.3, 1];
+colors = ['b', 'g', 'r', 'k', 'y'];
 
 figure
 for k = 1:5
+  kernel = svmTrain(X, y, C, @(x1, x2) gaussianKernel(x1, x2, sigma_values(k)));
   x1plot = linspace(min(X(:,1)), max(X(:,1)), 100)';
   x2plot = linspace(min(X(:,2)), max(X(:,2)), 100)';
   [X1, X2] = meshgrid(x1plot, x2plot);
   vals = zeros(size(X1));
   for i = 1:size(X1, 2)
      this_X = [X1(:, i), X2(:, i)];
-     vals(:, i) = svmPredict(kernels(k), this_X);
+     vals(:, i) = svmPredict(kernel, this_X);
   end
   % Plota a frontreira aprendida pelo SVM
   hold on
