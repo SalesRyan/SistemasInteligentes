@@ -43,13 +43,13 @@ p = svmPredict(model, Xtest);
 fprintf('Acur√°cia de Teste: %f\n', mean(double(p == ytest)) * 100);
 
 fprintf('+-------------- Meu teste --------------+');
-ketchup = readFile('spam.txt');
+ketchup = readFile('emailSample1.txt');
 ketchup_indices = processEmail(ketchup);
 features_ketchup = emailFeatures(ketchup_indices);
-p = svmPredict(model, features_ketchup')
+p = svmPredict(model, features_ketchup');
 if(p)
-  fprintf('O email È um spam!');
+  fprintf('O email eh um spam!');
 else
-  fprintf('O email n„o È pam!');
+  fprintf('O email nao eh spam!');
 end
 
