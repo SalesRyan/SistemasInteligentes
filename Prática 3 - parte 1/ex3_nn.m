@@ -20,7 +20,7 @@ load('ex3weights.mat');
 %  será cálculada a acurácia de treinamento, após implementar o algoritmo de 
 %  propagação para frente vocês devem encontrar uma acurácia em torno de 97.5% 
 
-pred = predict_deb(Theta1, Theta2, X);
+pred = predict(Theta1, Theta2, X);
 
 fprintf('\n Acurácia de treinamento: %f\n', mean(double(pred == y)) * 100);
 
@@ -36,7 +36,7 @@ for i = 1:m
     displayData(X(rp(i), :));
 
     %realiza a predição com o exemplo selecionado
-    pred = predict_deb(Theta1, Theta2, X(rp(i),:));
+    pred = predict(Theta1, Theta2, X(rp(i),:));
     fprintf('\nValor predito pela rede neural: %d (Dígito %d)\n', pred, mod(pred, 10));
     
     s = input('Pressione enter para continuar e q para sair: ','s');
