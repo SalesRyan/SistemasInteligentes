@@ -1,6 +1,11 @@
 function p = predict(Theta1, Theta2, X)
 %  A função predict é responsável por predizer uma label da imagem de entrada X,
-%  dada as matrizes de pesos Theta1 e Theta2. 
+%  dada as matrizes de pesos Theta1 e Theta2.
+
+printf('Theta1');
+size(Theta1)
+printf('Theta2');
+size(Theta2)
 
 % Inicializando os valores das variáveis
 m = size(X, 1);

@@ -12,8 +12,8 @@ m = size(X, 1);
 
 %Cálcular theta0 e theta1 randomicamente
 epsilon_init = 0.12;
-initial_Theta1 = 
-initial_Theta2 = 
+initial_Theta1 = randn(25, 401);
+initial_Theta2 = randn(10, 26);
 
 % transformar as matrizes de pesos em um vetor 
 initial_nn_params = [initial_Theta1(:) ; initial_Theta2(:)];
