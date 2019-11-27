@@ -2,20 +2,20 @@
 clear ; close all; clc
 
 %%% Definição da arquitetura da rede
-input_layer_size  = 400;  
+input_layer_size  = 4096;  
 hidden_layer_size = 25;   
-num_labels = 10;  % as labels foram definidas de 1 a 10, sendo o 10 atribuídas a classe 0 
+num_labels = 2;  % as labels foram definidas de 1 a 10, sendo o 10 atribuídas a classe 0 
 
 % Carregando os dados de treinamento
-treinoX = csvread('pixelsTreinoX.csv');
-treinoy = csvread('pixelsTreinoy.csv');
+treinoX = csvread('pixelsTreino64x64X.csv');
+treinoy = csvread('pixelsTreino64x64y.csv');
 X = treinoX(2:end, :);
 y = treinoy(2:end, :);
 
 %Cálcular theta0 e theta1 randomicamente
 epsilon_init = 0.12;
-initial_Theta1 = randn(25, 401);
-initial_Theta2 = randn(10, 26);
+initial_Theta1 = randn(25, 4097);
+initial_Theta2 = randn(2, 26);
 
 % transformar as matrizes de pesos em um vetor 
 initial_nn_params = [initial_Theta1(:) ; initial_Theta2(:)];
@@ -46,8 +46,8 @@ Theta2 = reshape(nn_params((1 + (hidden_layer_size * (input_layer_size + 1))):en
 %%  predizer as labels do conjunto de treinamento
 
 %teste
-testeX = csvread('pixelsTesteX.csv');
-testey = csvread('pixelsTestey.csv');
+testeX = csvread('pixelsTeste64x64X.csv');
+testey = csvread('pixelsTeste64x64y.csv');
 X_ = testeX(2:end, :);
 y_ = testey(2:end, :);
 
