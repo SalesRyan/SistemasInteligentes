@@ -9,7 +9,8 @@ fprintf('Etapa de associação: encontrando os centróides mais próximos.\n\n')
 
 % Definindo a localização inicial dos centróides
 K = 3; 
-initial_centroids = [3 3; 6 2; 8 5];
+#initial_centroids = [3 3; 6 2; 8 5];
+initial_centroids = [1 2;1 2;1 2];
 
 % Função que encontra os centróides mais próximos dos exemplos de treinamento baseada na posição inicial dos mesmos
 idx = findClosestCentroids(X, initial_centroids);
@@ -45,7 +46,8 @@ load('ex7data2.mat');
 % Definindo os parâmetros iniciais
 K = 3;
 max_iters = 10;
-initial_centroids = [3 3; 6 2; 8 5];
+#initial_centroids = [3 3; 6 2; 8 5];
+initial_centroids = [1 2;1 3;1 4];
 
 % O 'true' no último parâmetro da função indica que a execução do k-means
 % deve ser apresentada a cada iteração
@@ -63,6 +65,7 @@ fprintf('\n Rodando o K-Means nos pixels da imagem.\n\n');
 % Por exemplo, A (50, 33, 3) fornece a intensidade azul do pixel na linha 50 
 %e na coluna 33.
 load ('bird_small.mat');
+#A = imread('img.png');
 
 
 % Divide todos os valores por 255 para os mesmos obedeçam o intervalo [0-1]
@@ -77,7 +80,7 @@ img_size = size(A);
 X = reshape(A, img_size(1) * img_size(2), 3);
 
 % Você deve testar diferentes valores de K e max_iters aqui 
-K = 16; 
+K = 64; 
 max_iters = 10;
 
 % Aqui, foram definidos valores específicos para iniciar os centróides 

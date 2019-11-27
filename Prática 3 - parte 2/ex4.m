@@ -10,10 +10,15 @@ num_labels = 10;  % as labels foram definidas de 1 a 10, sendo o 10 atribuídas 
 load('ex4data1.mat');
 m = size(X, 1);
 
+minAcc = 101;
+maxAcc = -1;
+sumAcc = 0;
+
+for v=1:1
 %Cálcular theta0 e theta1 randomicamente
 epsilon_init = 0.12;
-initial_Theta1 = randn(25, 401);
-initial_Theta2 = randn(10, 26);
+initial_Theta1 = randn(25, 401)
+initial_Theta2 = randn(10, 26)
 
 % transformar as matrizes de pesos em um vetor 
 initial_nn_params = [initial_Theta1(:) ; initial_Theta2(:)];
@@ -37,14 +42,31 @@ Theta1 = reshape(nn_params(1:hidden_layer_size * (input_layer_size + 1)), hidden
 
 Theta2 = reshape(nn_params((1 + (hidden_layer_size * (input_layer_size + 1))):end), num_labels, (hidden_layer_size + 1));
 
-fprintf('Aperte enter para cotinuar.\n');
-pause;
+%fprintf('Aperte enter para cotinuar.\n');
+%pause;
 
 %%  Depois de treinar a rede neural, você deve utilizar a função predict para 
 %%  predizer as labels do conjunto de treinamento
 pred = predict(Theta1, Theta2, X);
 
-fprintf('\nAcurácia de Treinamento: %f\n', mean(double(pred == y)) * 100);
+acc = mean(double(pred == y)) * 100
+
+if acc < minAcc
+  minAcc = acc;
+end
+
+if acc > maxAcc
+  maxAcc = acc;
+end
+
+sumAcc += acc;
+
+%fprintf('\nAcurácia de Treinamento: %f\n', mean(double(pred == y)) * 100);
+endfor
+
+fprintf('\nMáxima Acurácia: %f\n', maxAcc);
+fprintf('\nMínima Acurácia: %f\n', minAcc);
+fprintf('\nAcurácia Média: %f\n', sumAcc/100);
 
 %% Se eu rodar 10x, por exemplo, a taxa de acurácia será a mesma?
 %% Cálcule a média, o máximo e o mínino da taxa de acurácia para 100 repetições 
